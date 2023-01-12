@@ -1,12 +1,26 @@
-import React from 'react'
-interface navTitleProps  {
-    navTitle: string
+import Link from "next/link";
+import { useRouter } from "next/router";
+
+interface navTitleProps {
+  navTitle: string;
 }
 
-const NavItem = ({navTitle} : navTitleProps) => {
+const NavItem = ({ navTitle }: navTitleProps) => {
+  let urlRef = navTitle === "home" ? "/" : `/${navTitle.replace(/\s/g, "")}`;
+  const router = useRouter();
+  const activeLink = router.pathname === urlRef;
   return (
-    <li><a className="px-3 py-2 rounded-full cursor-pointer hover:bg-slate-700 transition-all" href={navTitle.toLowerCase()}>{navTitle}</a></li>
-  )
-}
+    <li>
+      {" "}
+      <Link
+        className="px-3 py-2 rounded-full cursor-pointer hover:bg-slate-700 transition-all"
+        href={urlRef}
+        style={activeLink ? { backgroundColor: "#10141E" } : {}}
+      >
+        {navTitle.toUpperCase()}
+      </Link>
+    </li>
+  );
+};
 
-export default NavItem
+export default NavItem;
