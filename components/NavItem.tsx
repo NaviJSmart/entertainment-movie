@@ -15,7 +15,7 @@ const NavItem = ({ navTitle }: navTitleProps) => {
       <Link
         className="px-3 py-2 rounded-full cursor-pointer hover:bg-slate-700 transition-all"
         href={urlRef}
-        style={activeLink ? { backgroundColor: "#10141E" } : {}}
+        style={activeLink ? { backgroundColor: "#131129" } : {}}
       >
         {navTitle.toUpperCase()}
       </Link>
