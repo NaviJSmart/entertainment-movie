@@ -4,5 +4,23 @@
 
 body {
   background-color: #131129;
-  color: #A1C0C6;
+  color: #FFFFFF;
+
+  
+}
+@layer base {
+  body {
+    @apply h-full w-full max-w-[1440px];
+    
+  }
+}
+
+ *::-webkit-scrollbar {
+  border-radius: 10px;
+  height: 8px;
+  width: 8px;
+}
+*::-webkit-scrollbar-thumb:horizontal {
+  background: #5a698f;
+  border-radius: 10px;
 }

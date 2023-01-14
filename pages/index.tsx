@@ -1,10 +1,14 @@
 import Head from "next/head";
-import SearchInput from "../components/SearchInput";
-import Slider from "../components/CardImage";
 import Trending from "../components/Trending";
 import { getTrending } from "../services/data";
+import { RootTrendingType } from "../types/movieTypes";
+import { GetServerSideProps } from "next";
 
-export default function Home({data}: any) {
+export type InferdTrendingProps = {
+  data: RootTrendingType
+}
+
+const Home = ({data}: InferdTrendingProps) => {
   return (
     <>
       <Head>
@@ -13,21 +17,24 @@ export default function Home({data}: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="">
-        <Trending data={data}/>
+      <div className="flex flex-col">
+        <Trending data={data} />
       </div>
     </>
   );
 }
+export default Home;
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps<{
+  data: RootTrendingType;
+}> = async () => {
   const res = await fetch(getTrending());
 
-  const data = await res.json();
+  const data: RootTrendingType = await res.json();
 
   return {
     props: {
-      data: data.results,
+      data,
     },
   };
-}
+};

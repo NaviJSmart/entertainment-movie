@@ -10,7 +10,7 @@ const NavItem = ({ navTitle }: navTitleProps) => {
   const router = useRouter();
   const activeLink = router.pathname === urlRef;
   return (
-    <li>
+    <li className="text-[#A1C0C6]">
       {" "}
       <Link
         className="px-3 py-2 rounded-full cursor-pointer hover:bg-slate-700 transition-all"
