@@ -1,20 +1,31 @@
 import Image from "next/image";
 import React from "react";
-import { convertImage, toBase64 } from "../utils/imageBlur";
+import { shimmer, toBase64 } from "../utils/imageBlur";
 
-const CardImage = ({ srcPath }: any) => {
+type CardImageType = {
+  srcPath: string,
+  w: number,
+  h: number,
+}
+
+const CardImage = ({ srcPath, w, h }: CardImageType) => {
   return (
-    <div className="w-full h-full overflow-hidden  rounded-xl">
+    <div className="overflow-hidden  rounded-xl">
       <Image
-        width={500}
-        height={300}
         src={`https://image.tmdb.org/t/p/original/${srcPath}`}
+        width={w}
+        height={h}
         className="w-full h-full hover:scale-110 transition cursor-pointer"
         alt="name"
         placeholder="blur"
         blurDataURL={`data:image/svg+xml;base64,${toBase64(
-          convertImage(600, 300)
+          shimmer(w/2, h/2)
+          
         )} `}
+        style={{
+          maxWidth: '100%',
+          height: 'auto',
+        }}
       />
     </div>
   );

@@ -1,14 +1,12 @@
 import Head from "next/head";
 import Trending from "../components/Trending";
-import { getTrending } from "../services/data";
 import { RootTrendingType } from "../types/movieTypes";
-import { GetServerSideProps } from "next";
 
 export type InferdTrendingProps = {
-  data: RootTrendingType
-}
+  data: RootTrendingType;
+};
 
-const Home = ({data}: InferdTrendingProps) => {
+const Home = () => {
   return (
     <>
       <Head>
@@ -18,23 +16,9 @@ const Home = ({data}: InferdTrendingProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex flex-col">
-        <Trending data={data} />
+        <Trending />
       </div>
     </>
   );
-}
-export default Home;
-
-export const getServerSideProps: GetServerSideProps<{
-  data: RootTrendingType;
-}> = async () => {
-  const res = await fetch(getTrending());
-
-  const data: RootTrendingType = await res.json();
-
-  return {
-    props: {
-      data,
-    },
-  };
 };
+export default Home;

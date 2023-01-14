@@ -1,12 +1,12 @@
 import React from 'react'
-import { ShowOrMovieType } from '../types/movieTypes'
+import { ShowOrMovieType } from '../types/combineTypes'
 import CardImage from './CardImage'
 import CardInfo from './CardInfo'
 
 const CardCommon = ({data} : {data: ShowOrMovieType}) => {
   return (
     <div>
-      <CardImage src={data.backdrop_path}/>
+        
       <CardInfo data={data}/>
     </div>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ShowOrMovieType } from '../types/movieTypes'
+import { ShowOrMovieType } from '../types/combineTypes'
 
 const CardInfo = ({data} : {data: ShowOrMovieType}) => {
   return (
