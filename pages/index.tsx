@@ -1,12 +1,34 @@
 import Head from "next/head";
 import Trending from "../components/Trending";
+import useSWR from "swr";
 import { RootTrendingType } from "../types/movieTypes";
+import { fetcher } from "../utils/fetcher";
+import { useEffect, useState } from "react";
+import CardImage from "../components/CardImage";
 
 export type InferdTrendingProps = {
   data: RootTrendingType;
 };
 
 const Home = () => {
+  const [index, setIndex] = useState(6);
+  const { data, error, isLoading } = useSWR<RootTrendingType>(
+    "/api/tvmovie",
+    fetcher
+  );
+  useEffect(() => {
+    if (data && data?.results.length - 1 === index) {
+      setIndex(0);
+    }
+    const timerId = setTimeout(() => {
+      setIndex((prev) => prev + 1);
+    }, 8000);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [index, data]);
+
   return (
     <>
       <Head>
@@ -15,8 +37,26 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex flex-col">
-        <Trending />
+      <div
+        className="w-full h-full bg-center bg-cover relative duration-500"
+        style={{
+          backgroundImage: `url('https://image.tmdb.org/t/p/original/${data?.results[index].backdrop_path}')`,
+        }}
+      >
+        <div className="absoulte top-0 w-full h-full bg-[#1d193396]"></div>
+        <div className="absolute top-[10rem] left-[10rem] flex flex-col gap-[2rem]">
+          <h1 className="text-5xl">
+            {data?.results[index].title || data?.results[index].original_name}
+          </h1>
+          <p>
+            {data?.results[index].release_date ||
+              data?.results[index].first_air_date}
+          </p>
+        
+          <p className="text-lg max-w-[500px]">
+            {data?.results[index].overview}
+          </p>
+        </div>
       </div>
     </>
   );
