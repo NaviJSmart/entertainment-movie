@@ -13,4 +13,12 @@ export const getSingleTV = (tv_id: string | string[]) => {
   return `${base_URI}/tv/${tv_id}?${API_KEY}`;
 };
 
+export const upcomingMovies = () => {
+  return` ${base_URI}/movie/upcoming?${API_KEY}&language=en-US&page=1`
+}
+
+export const getTopRatedMovie = () => {
+  return ` ${base_URI}/movie/top_rated?${API_KEY}&language=en-US&page=1`
+}
+
 export const getSingleMovieOrTV = () => {};

@@ -80,3 +80,14 @@ export interface MovieDetailType {
 	vote_average: number;
 	vote_count: number;
 }
+
+
+export interface Date {}
+
+export interface upcomingMovieType {
+	dates: Date;
+	page: number;
+	results: ShowOrMovieType[];
+	total_pages: number;
+	total_results: number;
+}

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import CardGroup from "../components/CardGroup";
 import Trending from "../components/Trending";
 import { RootTrendingType } from "../types/movieTypes";
 
@@ -17,6 +18,7 @@ const Home = () => {
       </Head>
       <div className="flex flex-col">
         <Trending />
+        <CardGroup url='api/movie/upcoming' type="movie"/>
       </div>
     </>
   );

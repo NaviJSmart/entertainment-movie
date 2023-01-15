@@ -10,17 +10,16 @@ type CardImageType = {
 
 const CardImage = ({ srcPath, w, h }: CardImageType) => {
   return (
-    <div className="overflow-hidden  rounded-xl">
+    <div className="rounded-xl">
       <Image
         src={`https://image.tmdb.org/t/p/original/${srcPath}`}
         width={w}
         height={h}
-        className="w-full h-full hover:scale-110 transition cursor-pointer"
+        className="w-full h-full  cursor-pointer"
         alt="name"
         placeholder="blur"
         blurDataURL={`data:image/svg+xml;base64,${toBase64(
-          shimmer(w/2, h/2)
-          
+          shimmer(w, h)
         )} `}
         style={{
           maxWidth: '100%',
